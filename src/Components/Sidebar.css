@@ -1,0 +1,82 @@
+.icon-sidebar {
+    width: 36px;
+    position: fixed;
+    height: 100%;
+    transition: width 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.icon-sidebar a {
+    color: black;
+    padding: 10px 0;
+    text-align: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.icon-sidebar a i {
+    display: block;
+    font-size: 20px;
+}
+
+.icon-sidebar a span {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.icon-sidebar:hover a i {
+    display: inline;
+}
+
+.icon-sidebar:hover a span {
+    display: inline;
+    opacity: 1;
+}
+
+.icon-sidebar a:hover {
+    background-color: #ffffff;
+    border-radius: 15px;
+}
+
+.icon-sidebar:hover {
+    width: 80px;
+}
+
+.logo-with-shadow {
+    filter: drop-shadow(5px 5px 10px rgba(236, 233, 233, 0.868));
+}
+
+.logo-with-shadow1 {
+    filter: drop-shadow(0px 0px 10px #0a0000);
+}
+.moving-text-container {
+   
+    white-space: nowrap;
+  }
+  
+  .moving-text {
+    display: inline-block;
+    padding-left: 100%; /* Start the text off-screen */
+    font-size:medium; /* Adjust size as needed */
+    font-weight: bold;
+    color: #bf0860; /* Text color (gray-700) */
+    animation: scroll-text 20s linear infinite;
+  }
+  
+  @keyframes scroll-text {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+  

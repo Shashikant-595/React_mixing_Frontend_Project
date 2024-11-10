@@ -1,0 +1,42 @@
+/* styles.css (or your main CSS file) */
+
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  .app-container {
+  
+    height: 100vh; /* Full height of the viewport */
+    overflow: hidden; /* Prevents scrolling on the entire page */
+    width: auto;
+    
+  }
+  
+  .fixed-header {
+    position: fixed; /* Keeps the header fixed in place */
+    top: 0; /* Aligns it to the top of the viewport */
+    left: 0; /* Aligns it to the left */
+    right: 0; /* Aligns it to the right */
+    z-index: 1000; /* Ensures it stays on top of other content */
+    background-color: rgb(156, 162, 174); /* Header background color */
+  }
+  
+  .sidebar {
+    width: 250px; /* Set a fixed width for the sidebar */
+    position: fixed; /* Keeps sidebar fixed */
+    top: 60px; /* Adjust this based on the header's height */
+    bottom: 0; /* Stretches to the bottom */
+    background-color: #c2cbdb; /* Sidebar background color */
+    overflow-y: auto; /* Allow vertical scrolling if content overflows */
+    z-index: 999; /* Ensure it's below the header */
+    margin-top: 60px;
+  }
+  
+  .main-content {
+    margin-left: 60px; /* Space for the sidebar */
+    margin-top: 60px; /* Space for the header */
+    height: calc(100vh - 60px); /* Full height minus the header */
+    overflow-y: auto; /* Allow vertical scrolling within the main content */
+  }
+  
