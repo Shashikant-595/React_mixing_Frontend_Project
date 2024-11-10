@@ -1,15 +1,18 @@
 import '../index.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import * as XLSX from 'xlsx';
 import axios from 'axios';
+import '../styles.css';
 
 const OverallReport = () => {
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
     const [data, setData] = useState([]);
     const [rowCount, setRowCount] = useState(0);
+    const [loading, setLoading] = useState(false); // Add loading state
 
     const handleSearch = async () => {
+        setLoading(true); // Set loading to true when search starts
         try {
             const url = `http://localhost:4433/WeatherForecast/allreport?date1=${startDate}&date2=${endDate}`;
             const response = await axios.get(url);
@@ -25,6 +28,8 @@ const OverallReport = () => {
             }
         } catch (error) {
             console.error("Error fetching data:", error);
+        } finally {
+            setLoading(false); // Set loading to false after data is fetched
         }
     };
 
@@ -93,55 +98,67 @@ const OverallReport = () => {
                     </div>
                 </div>
             </div>
-            <div className="max-w-6xl mx-auto">
-                <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
-                    <thead className="sticky top-20 bg-gray-100 z-15">
-                        <tr className="bg-gray-100 text-gray-700 uppercase text-sm leading-normal">
-                            <th className="px-4 py-2 text-left">Batch Name</th>
-                            <th className="py-4 px-2 text-left">Batch_No</th>
-                            <th className="py-4 px-2 text-left">Date&Time</th>
-                            <th className="py-4 px-2 text-left">ML</th>
-                            <th className="py-4 px-2 text-left">MH</th>
-                            <th className="py-4 px-2 text-left">TS2</th>
-                            <th className="py-4 px-2 text-left">TC50</th>
-                            <th className="py-4 px-2 text-left">TC90</th>
-                            <th className="py-4 px-2 text-left">HRD</th>
-                            <th className="py-4 px-2 text-left">SP-Gravity</th>
-                            <th className="py-4 px-2 text-left">Wt</th>
-                            <th className="py-4 px-2 text-left">Dump Temp</th>
-                            <th className="py-4 px-2 text-left">Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {data.length > 0 ? (
-                            data.map((row, index) => {
-                                const renderCell = (value) => (typeof value === 'object' && value !== null ? (Object.keys(value).length === 0 ? '' : JSON.stringify(value)) : value || '');
 
-                                return (
-                                    <tr key={index} className="border-b border-gray-200 hover:bg-gray-50">
-                                        <td className="py-4 px-2 text-gray-800">{renderCell(row.Batch_Name)}</td>
-                                        <td className="py-4 px-2 text-gray-800">{renderCell(row.Batch_No)}</td>
-                                        <td className="py-4 px-2 text-gray-800">{renderCell(row.Reho_Date_Time)}</td>
-                                        <td className="py-4 px-2 text-gray-800">{renderCell(row.ML)}</td>
-                                        <td className="py-4 px-2 text-gray-800">{renderCell(row.MH)}</td>
-                                        <td className="py-4 px-2 text-gray-800">{renderCell(row.TS2)}</td>
-                                        <td className="py-4 px-2 text-gray-800">{renderCell(row.TC50)}</td>
-                                        <td className="py-4 px-2 text-gray-800">{renderCell(row.TC90)}</td>
-                                        <td className="py-4 px-2 text-gray-800">{renderCell(row.Hardness)}</td>
-                                        <td className="py-4 px-2 text-gray-800">{renderCell(row.SpecificGravity)}</td>
-                                        <td className="py-4 px-2 text-gray-800">{renderCell(row.Batch_Weight)}</td>
-                                        <td className="py-4 px-2 text-gray-800">{renderCell(row.Dump_Temp)}</td>
-                                        <td className="py-4 px-2 text-gray-950">{renderCell(row.Quality)}</td>
-                                    </tr>
-                                );
-                            })
-                        ) : (
-                            <tr>
-                                <td colSpan="13" className="py-3 px-4 text-center text-gray-600">No data available</td>
+            {/* Spinner while loading */}
+            {loading && (
+                <div className="flex justify-center items-center mt-4">
+                    <div className="loader animate-spin inline-block w-12 h-12 border-4 border-current border-t-transparent rounded-full" role="status">
+                        <span className="sr-only">Loading...</span>
+                    </div>
+                </div>
+            )}
+
+            <div className="max-w-6xl mx-auto mt-4">
+                {!loading && (
+                    <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
+                        <thead className="sticky top-20 bg-gray-100 z-15">
+                            <tr className="bg-gray-100 text-gray-700 uppercase text-sm leading-normal">
+                                <th className="px-4 py-2 text-left">Batch Name</th>
+                                <th className="py-4 px-2 text-left">Batch_No</th>
+                                <th className="py-4 px-2 text-left">Date&Time</th>
+                                <th className="py-4 px-2 text-left">ML</th>
+                                <th className="py-4 px-2 text-left">MH</th>
+                                <th className="py-4 px-2 text-left">TS2</th>
+                                <th className="py-4 px-2 text-left">TC50</th>
+                                <th className="py-4 px-2 text-left">TC90</th>
+                                <th className="py-4 px-2 text-left">HRD</th>
+                                <th className="py-4 px-2 text-left">SP-Gravity</th>
+                                <th className="py-4 px-2 text-left">Wt</th>
+                                <th className="py-4 px-2 text-left">Dump Temp</th>
+                                <th className="py-4 px-2 text-left">Status</th>
                             </tr>
-                        )}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {data.length > 0 ? (
+                                data.map((row, index) => {
+                                    const renderCell = (value) => (typeof value === 'object' && value !== null ? (Object.keys(value).length === 0 ? '' : JSON.stringify(value)) : value || '');
+
+                                    return (
+                                        <tr key={index} className="border-b border-gray-200 hover:bg-gray-50">
+                                            <td className="py-4 px-2 text-gray-800">{renderCell(row.Batch_Name)}</td>
+                                            <td className="py-4 px-2 text-gray-800">{renderCell(row.Batch_No)}</td>
+                                            <td className="py-4 px-2 text-gray-800">{renderCell(row.Reho_Date_Time)}</td>
+                                            <td className="py-4 px-2 text-gray-800">{renderCell(row.R_ml)}</td>
+                                            <td className="py-4 px-2 text-gray-800">{renderCell(row.R_mh)}</td>
+                                            <td className="py-4 px-2 text-gray-800">{renderCell(row.R_ts2)}</td>
+                                            <td className="py-4 px-2 text-gray-800">{renderCell(row.R_tc50)}</td>
+                                            <td className="py-4 px-2 text-gray-800">{renderCell(row.R_tc90)}</td>
+                                            <td className="py-4 px-2 text-gray-800">{renderCell(row.Hardness)}</td>
+                                            <td className="py-4 px-2 text-gray-800">{renderCell(row.SpecificGravity)}</td>
+                                            <td className="py-4 px-2 text-gray-800">{renderCell(row.Batch_Weight)}</td>
+                                            <td className="py-4 px-2 text-gray-800">{renderCell(row.Dump_Temp)}</td>
+                                            <td className="py-4 px-2 text-gray-950">{renderCell(row.status)}</td>
+                                        </tr>
+                                    );
+                                })
+                            ) : (
+                                <tr>
+                                    <td colSpan="13" className="py-3 px-4 text-center text-gray-600">No data available</td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </table>
+                )}
             </div>
         </div>
     );
