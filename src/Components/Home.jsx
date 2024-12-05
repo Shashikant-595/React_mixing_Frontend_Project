@@ -4,6 +4,7 @@ import { HubConnectionBuilder } from '@microsoft/signalr';
 import { Bar, Doughnut } from 'react-chartjs-2';
 import { FaSun, FaMoon } from 'react-icons/fa'; // Import icons
 import api from '../api';
+import BatchEfficiencyComponent from './BatchEfficiencyComponent';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -41,6 +42,10 @@ export default function Home() {
 
     const startConnection = async () => {
       try {
+
+       
+
+
         await connection.start();
         // console.log("Connected to SignalR");
 
@@ -217,7 +222,13 @@ export default function Home() {
             </div>
           </div>
         </section>
-
+        <section
+        className={`p-11 rounded-lg shadow-md mb-10 ${
+          isDarkMode ? 'bg-gray-800' : 'bg-white'
+        } shadow-blue-900`}
+      >
+        <BatchEfficiencyComponent />
+      </section>
         <section className="grid grid-cols-1 md:grid-cols-1 gap-4 ">
   {/* <div className={`py-1 px-2 rounded-lg shadow-md ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-blue-900`} style={{ height: '300px', overflow: 'hidden' }}>
     <h3 className={`${isDarkMode ? 'text-gray-300' : 'text-gray-700'} mb-4 text-center`}></h3>
@@ -227,12 +238,12 @@ export default function Home() {
   </div> */}
 
   <div className={`py-1 px-4 rounded-lg shadow-md ${isDarkMode ? 'bg-gray-800' : 'bg-slate-50'} shadow-blue-900`} style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-    <h3 className={`${isDarkMode ? 'text-gray-300' : 'text-gray-700'} mb-4 text-center underline underline-offset-4 `}>Today's Batch Testing Status</h3>
+    <h3 className={`${isDarkMode ? 'text-gray-300' : 'text-gray-700'}  mb-4 text-center underline underline-offset-4 `}>Today's Batch Testing Status</h3>
     <div style={{ flexGrow: 1, overflow: 'auto' }}>
       <table className={`${isDarkMode ? 'text-gray-300' : 'text-gray-700 '} min-w-full rounded-lg shadow-md`}>
-        <thead className="sticky top-0">
+        <thead className=" sticky top-0 z-10">
           <tr className={`${isDarkMode ? 'text-gray-300' : 'text-gray-700'} uppercase text-sm leading-normal`}>
-          <th className="py-4 px-2 text-left">Date&Time</th>
+          <th className="py-4 px-2 text-left ">Date&Time</th>
             <th className="px-4 py-2 text-left">Sapcode</th>
             <th className="px-4 py-2 text-left">Batch Name</th>
             <th className="py-4 px-2 text-left">Batch_No</th>  
@@ -248,7 +259,7 @@ export default function Home() {
           </tr>
         </thead>
         <tbody>
-  {toDaysdata.length > 0 ? (
+   {toDaysdata.length > 0 ? (
     toDaysdata.map((row, index) => {
       const renderCell = (value) => {
         if (typeof value === 'string' && /\d{2}\/\d{2}\/\d{4} \d{2}:\d{2}:\d{2}/.test(value)) {
@@ -292,8 +303,6 @@ export default function Home() {
     </div>
   </div>
 </section>
-
-
       </main>
     </div>
   );

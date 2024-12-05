@@ -34,8 +34,8 @@ html, body {
   }
   
   .main-content {
-    margin-left: 60px; /* Space for the sidebar */
-    margin-top: 60px; /* Space for the header */
+    margin-left: 40px; /* Space for the sidebar */
+    margin-top: 50px; /* Space for the header */
     height: calc(100vh - 60px); /* Full height minus the header */
     overflow-y: auto; /* Allow vertical scrolling within the main content */
   }
