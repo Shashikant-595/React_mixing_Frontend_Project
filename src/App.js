@@ -13,7 +13,7 @@ function App() {
             <div className="app-container">
                 <Header className="fixed-header" />
                 <Sidebar className="sidebar" />
-                <main className="main-content">
+                <main className="main-content ">
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/OverallReport" element={<OverallReport />} />

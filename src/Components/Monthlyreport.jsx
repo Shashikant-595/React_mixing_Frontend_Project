@@ -2,6 +2,8 @@ import '../index.css';
 import React, { useState, useEffect } from 'react';
 import * as XLSX from 'xlsx';
 import axios from 'axios';
+import api from '../api';
+import '../styles.css';
 
 const Monthlyreport = () => {
     const [batches, setBatches] = useState([]);
@@ -10,13 +12,14 @@ const Monthlyreport = () => {
     const [endDate, setEndDate] = useState("");
     const [data, setData] = useState([]);
     const [rowCount, setRowCount] = useState(0);
+    const [loading, setLoading] = useState(false); // Add loading state
 
     // Fetch batches
     useEffect(() => {
         const fetchBatches = async () => {
             try {
-                const response = await axios.get("http://192.168.20.70:4435/WeatherForecast/GetBatches");
-                console.log("Batch data:", response.data);
+                const response = await api.get("/GetBatches");
+                // console.log("Batch data:", response.data);
                 setBatches(response.data);
             } catch (error) {
                 console.error("Error fetching batches:", error);
@@ -27,27 +30,26 @@ const Monthlyreport = () => {
 
     // Handle search based on selected batch and date range
     const handleSearch = async () => {
+        setLoading(true); // Show spinner
         try {
-            const url = `http://192.168.20.70:4435/WeatherForecast/GetDataTable?sapcode=${selectedBatch}&date1=${startDate}&date2=${endDate}`;
-            const response = await axios.get(url);
+            const url = `/GetDataTable?sapcode=${selectedBatch}&date1=${startDate}&date2=${endDate}`;
+            const response = await api.get(url);
             const contentType = response.headers['content-type'];
 
             if (contentType && contentType.includes("application/json")) {
                 const fetchedData = response.data;
-                console.log("Fetched Data:", fetchedData);
+                // console.log("Fetched Data:", fetchedData);
                 setData(fetchedData);
-                setRowCount(fetchedData.length); // Set row count based on data length
+                setRowCount(fetchedData.length);
             } else {
                 console.error("Unexpected content type:", contentType);
             }
         } catch (error) {
             console.error("Error fetching data:", error);
+        } finally {
+            setLoading(false); // Hide spinner after data fetch
         }
     };
-
-    
-
-
 
 const downloadExcel = () => {
     // Retrieve batch_name based on selectedBatch
@@ -107,7 +109,7 @@ const downloadExcel = () => {
                             className="mt-1 block w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-md text-gray-700 focus:ring-indigo-500 focus:border-indigo-500"
                         />
                     </div>
-                    <div className="form-group flex items-center mb-2">
+                    <div className="form-group flex items-center mt-3">
                         <button
                             onClick={handleSearch}
                             className="bg-indigo-600 text-white px-4 py-2 rounded-lg shadow hover:bg-indigo-500 focus:outline-none mr-2"
@@ -123,13 +125,21 @@ const downloadExcel = () => {
                     </div>
                 </div>
             </div>
+            {loading && (
+                <div className="flex justify-center items-center mt-4">
+                    <div className="loader animate-spin inline-block w-12 h-12 border-4 border-current border-t-transparent rounded-full" role="status">
+                        <span className="sr-only">Loading...</span>
+                    </div>
+                </div>
+            )}
             <div className="max-w-6xl mx-auto">
                 <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
                     <thead className="sticky top-20 bg-gray-100 z-15">
                         <tr className="bg-gray-100 text-gray-700 uppercase text-sm leading-normal">
+                        <th className="py-3 px-3 text-left">Date&Time</th>
                             <th className="py-3 px-3 text-left">Sapcode </th>
                             <th className="py-3 px-3 text-left">Batch_No</th>
-                            <th className="py-3 px-3 text-left">Date&Time</th>
+                           
                             <th className="py-3 px-3 text-left">ML</th>
                             <th className="py-3 px-3 text-left">MH</th>
                             <th className="py-3 px-3 text-left">TS2</th>
@@ -144,16 +154,20 @@ const downloadExcel = () => {
                     <tbody>
                         {data.length > 0 ? (
                             data.map((row, index) => {
-                                const parsedDate = row.Reho_Date_Time ? new Date(row.Reho_Date_Time) : null;
-                                const formattedDate = parsedDate && !isNaN(parsedDate) ? parsedDate.toLocaleString() : 'N/A';
-
-                                const renderCell = (value) => (typeof value === 'object' && value !== null ? (Object.keys(value).length === 0 ? '' : JSON.stringify(value)) : value || '');
-
+                                const renderCell = (value) => {
+                                  
+                                    return typeof value === 'object' && value !== null
+                                      ? Object.keys(value).length === 0
+                                        ? ''
+                                        : JSON.stringify(value)
+                                      : value || '';
+                                  };
                                 return (
                                     <tr key={index} className="border-b border-gray-200 hover:bg-gray-50">
+                                         <td className="py-3 px-2 text-gray-800">{row.Reho_Date_Time}</td>
                                         <td className="py-3 px-2 text-gray-800">{selectedBatch || ''}</td>
                                         <td className="py-3 px-2 text-gray-800">{renderCell(row.Batch_No)}</td>
-                                        <td className="py-3 px-2 text-gray-800">{formattedDate}</td>
+                                       
                                         <td className="py-3 px-2 text-gray-800">{renderCell(row.R_ml)}</td>
                                         <td className="py-3 px-2 text-gray-800">{renderCell(row.R_mh)}</td>
                                         <td className="py-3 px-2 text-gray-800">{renderCell(row.R_ts2)}</td>

@@ -33,7 +33,7 @@ const Sidebar = () => {
                     <span>Batch Report</span>
                 </Link>
                 {/* Add other links for your pages */}
-                <Link to="http://192.168.20.70:96/Login.aspx" onClick={() => showSweetAlert('Logout Clicked', 'Logging out', 'warning')}>
+                <Link to="http://192.168.20.70:96/Login.aspx" onClick={() => showSweetAlert('You are redirected on FMS', 'Logging out', 'warning')}>
                     <FontAwesomeIcon icon={faRightFromBracket} className="logo-with-shadow1" style={{ color: '#ea3e3e' }} />
                     <span>Logout</span>
                 </Link>

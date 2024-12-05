@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import * as XLSX from 'xlsx';
 import axios from 'axios';
 import '../styles.css';
+import api from '../api';
 
 const OverallReport = () => {
     const [startDate, setStartDate] = useState("");
@@ -14,13 +15,15 @@ const OverallReport = () => {
     const handleSearch = async () => {
         setLoading(true); // Set loading to true when search starts
         try {
-            const url = `http://localhost:4433/WeatherForecast/allreport?date1=${startDate}&date2=${endDate}`;
-            const response = await axios.get(url);
+          // const url = `http://192.168.20.70:4435/WeatherForecast/allreport?date1=${startDate}&date2=${endDate}`;
+           const url = `/allreport?date1=${startDate}&date2=${endDate}`;
+            
+           const response = await api.get(url);
             const contentType = response.headers['content-type'];
 
             if (contentType && contentType.includes("application/json")) {
                 const fetchedData = response.data;
-                console.log("Fetched Data:", fetchedData);
+                // console.log("Fetched Data:", fetchedData);
                 setData(fetchedData);
                 setRowCount(fetchedData.length);
             } else {
@@ -113,9 +116,10 @@ const OverallReport = () => {
                     <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
                         <thead className="sticky top-20 bg-gray-100 z-15">
                             <tr className="bg-gray-100 text-gray-700 uppercase text-sm leading-normal">
+                                <th className="py-4 px-2 text-left">Date&Time</th>
                                 <th className="px-4 py-2 text-left">Batch Name</th>
                                 <th className="py-4 px-2 text-left">Batch_No</th>
-                                <th className="py-4 px-2 text-left">Date&Time</th>
+                               
                                 <th className="py-4 px-2 text-left">ML</th>
                                 <th className="py-4 px-2 text-left">MH</th>
                                 <th className="py-4 px-2 text-left">TS2</th>
@@ -131,13 +135,21 @@ const OverallReport = () => {
                         <tbody>
                             {data.length > 0 ? (
                                 data.map((row, index) => {
-                                    const renderCell = (value) => (typeof value === 'object' && value !== null ? (Object.keys(value).length === 0 ? '' : JSON.stringify(value)) : value || '');
+                                    const renderCell = (value) => {
+                                       
+                                        return typeof value === 'object' && value !== null
+                                          ? Object.keys(value).length === 0
+                                            ? ''
+                                            : JSON.stringify(value)
+                                          : value || '';
+                                      };
 
                                     return (
                                         <tr key={index} className="border-b border-gray-200 hover:bg-gray-50">
+                                            <td className="py-4 px-2 text-gray-800">{renderCell(row.Reho_Date_Time)}</td>
                                             <td className="py-4 px-2 text-gray-800">{renderCell(row.Batch_Name)}</td>
                                             <td className="py-4 px-2 text-gray-800">{renderCell(row.Batch_No)}</td>
-                                            <td className="py-4 px-2 text-gray-800">{renderCell(row.Reho_Date_Time)}</td>
+                                           
                                             <td className="py-4 px-2 text-gray-800">{renderCell(row.R_ml)}</td>
                                             <td className="py-4 px-2 text-gray-800">{renderCell(row.R_mh)}</td>
                                             <td className="py-4 px-2 text-gray-800">{renderCell(row.R_ts2)}</td>
@@ -153,7 +165,7 @@ const OverallReport = () => {
                                 })
                             ) : (
                                 <tr>
-                                    <td colSpan="13" className="py-3 px-4 text-center text-gray-600">No data available</td>
+                                    <td colSpan="13" className="py-3 px-4 text-center text-red-400">No data available</td>
                                 </tr>
                             )}
                         </tbody>
