@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, Title, Tooltip, Legend, ArcElement, CategoryScale, LinearScale } from 'chart.js';
 import api from '../api';
+import '../styles.css'; // Import your CSS
 // Register necessary chart elements
 ChartJS.register(Title, Tooltip, Legend, ArcElement, CategoryScale, LinearScale);
 
@@ -34,24 +35,56 @@ const BatchEfficiencyComponent = () => {
     datasets: [
       {
         data: [efficiency, 100 - efficiency], // Efficiency and remaining portion
-        backgroundColor: ['#4caf50', '#f44336'],  // Green for efficiency, red for remaining
-        hoverBackgroundColor: ['#45a049', '#d32f2f'],
+        backgroundColor: ['#10B981', '#e42222'],  // Green for efficiency, red for remaining
+        hoverBackgroundColor: ['#10B981', '#eb504e'],
       },
     ],
   };
 
   return (
-    <div className="text-center p-4 bg-white rounded-lg shadow-lg">
-  <h3 className="text-lg font-semibold text-gray-800 mb-4">Mixing Production Efficiency</h3>
+    <div className="text-center p-0 bg-white rounded-lg shadow-md">
+  <h3 className="text-lg font-semibold underline underline-offset-4  text-gray-800 mb-4 ">22 Hour's Mixing Production Efficiency</h3>
   {batchCount !== null ? (
-    <div>
-      <p className="text-gray-700 mb-2">22 Hours Batches Produced: <span className="font-bold">{batchCount}</span></p>
-      <p className="text-gray-700 mb-4">Efficiency: <span className="font-bold">{efficiency.toFixed(2)}%</span></p>
-      <div className="w-72 h-72 mx-auto">
-        {/* Tailwind classes to control width, height, and centering */}
+    <div className="bg-white max-w-4xl mx-auto flex flex-col md:flex-row items-center md:items-start">
+    {/* Left Section: Description and Statistics */}
+    <div className="md:w-1/2 md:pr-6">
+  {/* <h2 className="text-xl font-semibold text-gray-800 mb-4">Efficiency Overview</h2> */}
+  
+  {/* Consistent alignment using grid layout */}
+  <div className="grid grid-cols-2 gap-y-3">
+    {/* Target Batches */}
+    <span className="text-gray-700 text-lg font-medium text-start">Target Batches:</span>
+    <span className="font-bold text-gray-900">132</span>
+    
+    {/* Batches Produced */}
+    <span className="text-gray-700 text-lg font-medium text-start">Batches Produced:</span>
+    <span className="font-bold text-gray-900">{batchCount}</span>
+    
+    {/* Efficiency */}
+    <span className="text-gray-700 text-lg font-medium text-start">Efficiency:</span>
+    <span className={`font-bold ${efficiency >= 75 ? 'text-green-600 ' : efficiency >= 50 ? 'text-yellow-600' : 'text-red-600'}`}>
+      {efficiency.toFixed(2)}%
+    </span>
+    
+    {/* Efficiency Lag */}
+    <span className="text-gray-700 text-lg font-medium text-start">Efficiency Lag By:</span>
+    <span className="text-red-600 text-lg font-medium">{(100 - efficiency).toFixed(2)}%</span>
+    
+   
+  </div>
+</div>
+
+  
+    {/* Right Section: Pie Chart */}
+    <div className="md:w-1/2 flex flex-col items-center">
+      <div className="w-64 h-64">
         <Pie data={chartData} />
       </div>
+      {/* Labels for the Pie Chart */}
+    
     </div>
+  </div>
+  
   ) : (
     <p className="text-gray-500">Loading...</p>
   )}

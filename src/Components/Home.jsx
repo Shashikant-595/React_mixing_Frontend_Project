@@ -129,8 +129,6 @@ export default function Home() {
     } catch (error) {
       console.error("Error fetching data:", error);
     }
-  
-  
   }
 
   useEffect(() => {
@@ -180,7 +178,7 @@ export default function Home() {
         </button>
       </header>
       <main className="flex-grow p-3">
-      <h3 className={`${isDarkMode ? 'text-gray-300' : 'text-gray-700'} mb-4 text-center underline underline-offset-4`}>Monthly Batch Quality Status </h3>
+      <h3 className={`${isDarkMode ? 'text-gray-300' : 'text-gray-700'} mb-4 text-center font-semibold underline underline-offset-4`}>Monthly Batch Quality Status </h3>
         <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 mb-2">
 
         <div className={`p-6 rounded-lg shadow-md ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-blue-500 hover:shadow-2xl transition-shadow duration-300`}>
@@ -210,20 +208,20 @@ export default function Home() {
         {/* Chart Section */}
         <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className={`p-10 rounded-lg shadow-md mb-10 ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-blue-900`} style={{ height: '300px', overflow: 'hidden' }}>
-            <h3 className={`${isDarkMode ? 'text-gray-300' : 'text-gray-700'} text-center mb-4 underline underline-offset-4`}>Batch Production Over Year</h3>
+            <h3 className={`${isDarkMode ? 'text-gray-300' : 'text-gray-700'} text-center mb-4  font-semibold underline  underline-offset-4`}>Batch Production Over Year</h3>
             <div style={{ height: '100%' }}>
               <Bar data={barData} options={{ maintainAspectRatio: false }} />
             </div>
           </div>
           <div className={`p-11 rounded-lg shadow-md  mb-10 ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-blue-900`} style={{ height: '300px', overflow: 'hidden' }}>
-            <h3 className={`${isDarkMode ? 'text-gray-300' : 'text-gray-700'} text-center mb-4 underline underline-offset-4`}>Monthly Batch Quality Status Distribution</h3>
+            <h3 className={`${isDarkMode ? 'text-gray-300' : 'text-gray-700'} text-center mb-4 font-semibold underline underline-offset-4`}>Monthly Batch Quality Status Distribution</h3>
             <div style={{ height: '100%' }}>
               <Doughnut data={doughnutData} options={{ maintainAspectRatio: false }} />
             </div>
           </div>
         </section>
         <section
-        className={`p-11 rounded-lg shadow-md mb-10 ${
+        className={`p-5 rounded-lg shadow-md mb-10 ${
           isDarkMode ? 'bg-gray-800' : 'bg-white'
         } shadow-blue-900`}
       >
@@ -238,10 +236,10 @@ export default function Home() {
   </div> */}
 
   <div className={`py-1 px-4 rounded-lg shadow-md ${isDarkMode ? 'bg-gray-800' : 'bg-slate-50'} shadow-blue-900`} style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-    <h3 className={`${isDarkMode ? 'text-gray-300' : 'text-gray-700'}  mb-4 text-center underline underline-offset-4 `}>Today's Batch Testing Status</h3>
+    <h3 className={`${isDarkMode ? 'text-gray-300' : 'text-gray-700'}  mb-4 text-center underline underline-offset-4 font-semibold `}>Today's Batch Testing Status</h3>
     <div style={{ flexGrow: 1, overflow: 'auto' }}>
       <table className={`${isDarkMode ? 'text-gray-300' : 'text-gray-700 '} min-w-full rounded-lg shadow-md`}>
-        <thead className=" sticky top-0 z-10">
+        <thead className=" font-semibold sticky top-0 z-10">
           <tr className={`${isDarkMode ? 'text-gray-300' : 'text-gray-700'} uppercase text-sm leading-normal`}>
           <th className="py-4 px-2 text-left ">Date&Time</th>
             <th className="px-4 py-2 text-left">Sapcode</th>
