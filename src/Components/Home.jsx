@@ -51,14 +51,14 @@ export default function Home() {
 
         connection.on("ReceiveDataUpdate", (data) => {
           if (data && typeof data === 'object') {
-            console.log("data"+data);
-            console.log("okBatches"+data.okBatches);
-            console.log("rs"+data.rejectedBatches);
-            console.log("holdBatches"+data.holdBatches);
-            console.log("data"+data.totaltesting);
-            console.log("data"+data.totaltesting);
-            console.log("data"+data.totaltesting);
-            console.log("data"+data.totaltesting);
+            // console.log("data"+data);
+            // console.log("okBatches"+data.okBatches);
+            // console.log("rs"+data.rejectedBatches);
+            // console.log("holdBatches"+data.holdBatches);
+            // console.log("data"+data.totaltesting);
+            // console.log("data"+data.totaltesting);
+            // console.log("data"+data.totaltesting);
+            // console.log("data"+data.totaltesting);
 
             setBatchData({
               okBatches: data.okBatches || 0,
@@ -73,7 +73,7 @@ export default function Home() {
           }
         });
       } catch (error) {
-        console.error("Connection failed: ", error);
+      //  console.error("Connection failed: ", error);
         setTimeout(() => startConnection(), 5000);
       }
     };
@@ -100,7 +100,7 @@ export default function Home() {
         setMonthlyData(data.data);
       }
     } catch (error) {
-      console.error("Error fetching monthly data: ", error);
+     // console.error("Error fetching monthly data: ", error);
     }
   };
 
@@ -124,10 +124,10 @@ export default function Home() {
         // console.log("Fetched Data:", fetchedData); // Log the fetched data for debugging
         setData(fetchedData); // Update the state with the fetched data
       } else {
-        console.error("Unexpected response format:", response);
+       // console.error("Unexpected response format:", response);
       }
     } catch (error) {
-      console.error("Error fetching data:", error);
+     // console.error("Error fetching data:", error);
     }
   }
 
@@ -136,7 +136,7 @@ export default function Home() {
      
   }, []);
 
-  console.log("monthaly data"+monthlyData);
+  //console.log("monthaly data"+monthlyData);
   const barData = {
     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
     datasets: [
@@ -181,25 +181,25 @@ export default function Home() {
       <h3 className={`${isDarkMode ? 'text-gray-300' : 'text-gray-700'} mb-4 text-center font-semibold underline underline-offset-4`}>Monthly Batch Quality Status </h3>
         <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 mb-2">
 
-        <div className={`p-6 rounded-lg shadow-md ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-blue-500 hover:shadow-2xl transition-shadow duration-300`}>
+        <div className={`p-6 rounded-lg shadow-md ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-blue-900 hover:shadow-2xl transition-shadow duration-300`}>
             <h3 className={`${isDarkMode ? 'text-gray-300' : 'text-gray-700'} text-center`}> Batches Tested </h3>
             <p className="text-2xl text-center font-semibold text-pink-400">{batchData.totaltesting}</p>
           </div>
 
-          <div className={`p-6 rounded-lg shadow-md ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-blue-500 hover:shadow-2xl transition-shadow duration-300 `}>
+          <div className={`p-6 rounded-lg shadow-md ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-blue-900 hover:shadow-2xl transition-shadow duration-300 `}>
             <h3 className={`${isDarkMode ? 'text-gray-300' : 'text-gray-500'} text-center`}>  Batches Produced</h3>
             <p className="text-2xl text-center font-semibold text-blue-500">{batchData.monthlyTotalBatches}</p>
           </div>
          
-          <div className={`p-6 rounded-lg shadow-md ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-blue-500 hover:shadow-2xl transition-shadow duration-300`}>
+          <div className={`p-6 rounded-lg shadow-md ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-blue-900 hover:shadow-2xl transition-shadow duration-300`}>
             <h3 className={`${isDarkMode ? 'text-gray-300' : 'text-gray-700'} text-center`}> Incomplete Data </h3>
             <p className="text-2xl text-center font-semibold text-yellow-500"> {batchData.inprocess}</p>
           </div>
-          <div className={`p-6 rounded-lg shadow-md ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-blue-500 hover:shadow-2xl transition-shadow duration-300`}>
+          <div className={`p-6 rounded-lg shadow-md ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-blue-900 hover:shadow-2xl transition-shadow duration-300`}>
             <h3 className={`${isDarkMode ? 'text-gray-300' : 'text-gray-700'} text-center`}> Rejected Batches</h3>
             <p className="text-2xl text-center font-semibold text-red-600">{batchData.allrejected}</p>
           </div>
-          <div className={`p-6 rounded-lg shadow-md ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-blue-500 hover:shadow-2xl transition-shadow duration-300`}>
+          <div className={`p-6 rounded-lg shadow-md ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-blue-900 hover:shadow-2xl transition-shadow duration-300`}>
             <h3 className={`${isDarkMode ? 'text-gray-300' : 'text-gray-700'} text-center`}> Ok Batches</h3>
             <p className="text-2xl text-center font-semibold text-green-600">{batchData.okBatches}</p>
           </div>
