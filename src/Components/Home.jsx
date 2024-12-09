@@ -178,7 +178,7 @@ export default function Home() {
         </button>
       </header>
       <main className="flex-grow p-3">
-      <h3 className={`${isDarkMode ? 'text-gray-300' : 'text-gray-700'} mb-4 text-center font-semibold underline underline-offset-4`}>Monthly Batch Quality Status </h3>
+      <h3 className={`${isDarkMode ? 'text-gray-300' : 'text-gray-700'} mb-4 text-center font-semibold underline underline-offset-4`}> <span className="text-blue-600"> {new Date().toLocaleString('en-US', { month: 'long' })}</span> Batch Quality Status  </h3>
         <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 mb-2">
 
         <div className={`p-6 rounded-lg shadow-md ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-blue-900 hover:shadow-2xl transition-shadow duration-300`}>
@@ -208,13 +208,13 @@ export default function Home() {
         {/* Chart Section */}
         <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className={`p-10 rounded-lg shadow-md mb-10 ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-blue-900`} style={{ height: '300px', overflow: 'hidden' }}>
-            <h3 className={`${isDarkMode ? 'text-gray-300' : 'text-gray-700'} text-center mb-4  font-semibold underline  underline-offset-4`}>Batch Production Over Year</h3>
+            <h3 className={`${isDarkMode ? 'text-gray-300' : 'text-gray-700'} text-center mb-4  font-semibold underline  underline-offset-4`}>Batch Production Over <span className="text-blue-600 ">{new Date().getFullYear()}</span></h3>
             <div style={{ height: '100%' }}>
               <Bar data={barData} options={{ maintainAspectRatio: false }} />
             </div>
           </div>
           <div className={`p-11 rounded-lg shadow-md  mb-10 ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-blue-900`} style={{ height: '300px', overflow: 'hidden' }}>
-            <h3 className={`${isDarkMode ? 'text-gray-300' : 'text-gray-700'} text-center mb-4 font-semibold underline underline-offset-4`}>Monthly Batch Quality Status Distribution</h3>
+            <h3 className={`${isDarkMode ? 'text-gray-300' : 'text-gray-700'} text-center mb-4 font-semibold underline underline-offset-4`}><span className="text-blue-600"> {new Date().toLocaleString('en-US', { month: 'long' })}</span> Batch Quality Status Distribution</h3>
             <div style={{ height: '100%' }}>
               <Doughnut data={doughnutData} options={{ maintainAspectRatio: false }} />
             </div>
