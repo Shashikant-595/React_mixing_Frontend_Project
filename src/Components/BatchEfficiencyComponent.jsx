@@ -22,7 +22,7 @@ const BatchEfficiencyComponent = () => {
         const efficiency = (batchCount / 132) * 100;
         setEfficiency(efficiency);
       } catch (error) {
-        console.error('Error fetching batch count:', error);
+       // console.error('Error fetching batch count:', error);
       }
     };
 

@@ -22,7 +22,7 @@ const Monthlyreport = () => {
                 // console.log("Batch data:", response.data);
                 setBatches(response.data);
             } catch (error) {
-                console.error("Error fetching batches:", error);
+          //      console.error("Error fetching batches:", error);
             }
         };
         fetchBatches();
@@ -42,10 +42,10 @@ const Monthlyreport = () => {
                 setData(fetchedData);
                 setRowCount(fetchedData.length);
             } else {
-                console.error("Unexpected content type:", contentType);
+             //   console.error("Unexpected content type:", contentType);
             }
         } catch (error) {
-            console.error("Error fetching data:", error);
+          //  console.error("Error fetching data:", error);
         } finally {
             setLoading(false); // Hide spinner after data fetch
         }
@@ -66,7 +66,7 @@ const downloadExcel = () => {
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, batchName); // Use batchName as sheet name
     XLSX.writeFile(workbook, `${batchName}_Mixing_Data.xlsx`); // Save the file with batchName in filename
-    console.log("Downloading Excel");
+  //  console.log("Downloading Excel");
 };
 
     return (

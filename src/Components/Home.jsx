@@ -181,28 +181,28 @@ export default function Home() {
       <h3 className={`${isDarkMode ? 'text-gray-300' : 'text-gray-700'} mb-4 text-center font-semibold underline underline-offset-4`}> <span className="text-blue-600"> {new Date().toLocaleString('en-US', { month: 'long' })}</span> Batch Quality Status  </h3>
         <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 mb-2">
 
-        <div className={`p-6 rounded-lg shadow-md ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-blue-900 hover:shadow-2xl transition-shadow duration-300`}>
+        <div className={`p-6 rounded-lg shadow-md ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-blue-900 hover:shadow-2xl border border-pink-500 transition-shadow duration-300`}>
             <h3 className={`${isDarkMode ? 'text-gray-300' : 'text-gray-700'} text-center`}> Batches Tested </h3>
             <p className="text-2xl text-center font-semibold text-pink-400">{batchData.totaltesting}</p>
           </div>
-
-          <div className={`p-6 rounded-lg shadow-md ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-blue-900 hover:shadow-2xl transition-shadow duration-300 `}>
+         <div className={`p-6 rounded-lg shadow-md ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-blue-900 hover:shadow-2xl border border-blue-600  transition-shadow duration-300 `}>
             <h3 className={`${isDarkMode ? 'text-gray-300' : 'text-gray-500'} text-center`}>  Batches Produced</h3>
             <p className="text-2xl text-center font-semibold text-blue-500">{batchData.monthlyTotalBatches}</p>
           </div>
          
-          <div className={`p-6 rounded-lg shadow-md ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-blue-900 hover:shadow-2xl transition-shadow duration-300`}>
+          <div className={`p-6 rounded-lg shadow-md ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-blue-900 hover:shadow-2xl border border-blue-600 transition-shadow duration-300`}>
             <h3 className={`${isDarkMode ? 'text-gray-300' : 'text-gray-700'} text-center`}> Incomplete Data </h3>
             <p className="text-2xl text-center font-semibold text-yellow-500"> {batchData.inprocess}</p>
           </div>
-          <div className={`p-6 rounded-lg shadow-md ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-blue-900 hover:shadow-2xl transition-shadow duration-300`}>
+          <div className={`p-6 rounded-lg shadow-md ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-blue-900 hover:shadow-2xl border border-blue-600 transition-shadow duration-300`}>
             <h3 className={`${isDarkMode ? 'text-gray-300' : 'text-gray-700'} text-center`}> Rejected Batches</h3>
             <p className="text-2xl text-center font-semibold text-red-600">{batchData.allrejected}</p>
           </div>
-          <div className={`p-6 rounded-lg shadow-md ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-blue-900 hover:shadow-2xl transition-shadow duration-300`}>
+          <div className={`p-6 rounded-lg shadow-md ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-blue-900 hover:shadow-2xl border border-blue-600 transition-shadow duration-300`}>
             <h3 className={`${isDarkMode ? 'text-gray-300' : 'text-gray-700'} text-center`}> Ok Batches</h3>
             <p className="text-2xl text-center font-semibold text-green-600">{batchData.okBatches}</p>
           </div>
+            
         </section>
 
         {/* Chart Section */}
