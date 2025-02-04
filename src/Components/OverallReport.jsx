@@ -115,19 +115,20 @@ const OverallReport = () => {
                 {!loading && (
                     <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
                         <thead className="sticky top-20 bg-gray-100 z-15">
-                            <tr className="bg-gray-100 text-gray-700 uppercase text-sm leading-normal">
-                                <th className="py-4 px-2 text-left">Date&Time</th>
+                            <tr className="bg-gray-100 text-gray-700  text-sm leading-normal">
+                                <th className="py-4 px-2 text-left">Test-Date</th>
                                 <th className="px-4 py-2 text-left">Batch Name</th>
                                 <th className="py-4 px-2 text-left">Batch_No</th>
                                
-                                <th className="py-4 px-2 text-left">ML</th>
-                                <th className="py-4 px-2 text-left">MH</th>
-                                <th className="py-4 px-2 text-left">TS2</th>
-                                <th className="py-4 px-2 text-left">TC50</th>
-                                <th className="py-4 px-2 text-left">TC90</th>
-                                <th className="py-4 px-2 text-left">HRD</th>
-                                <th className="py-4 px-2 text-left">SP-Gravity</th>
-                                <th className="py-4 px-2 text-left">Wt</th>
+                                <th className="py-4 px-2 text-left">ML (R1)</th>
+                                <th className="py-4 px-2 text-left">MH (R2)</th>
+                                <th className="py-4 px-2 text-left">TS2 (R3)</th>
+                                <th className="py-4 px-2 text-left">TC50 (R4)</th>
+                                <th className="py-4 px-2 text-left">TC90 (R5)</th>
+                                <th className="py-4 px-2 text-left">WT-KG</th>
+                                <th className="py-4 px-2 text-left">HRD (H1)</th>
+                                <th className="py-4 px-2 text-left">SPG (S1)</th>
+                               
                                 <th className="py-4 px-2 text-left">Dump Temp</th>
                                 <th className="py-4 px-2 text-left">Status</th>
                             </tr>
@@ -155,9 +156,10 @@ const OverallReport = () => {
                                             <td className="py-4 px-2 text-gray-800">{renderCell(row.R_ts2)}</td>
                                             <td className="py-4 px-2 text-gray-800">{renderCell(row.R_tc50)}</td>
                                             <td className="py-4 px-2 text-gray-800">{renderCell(row.R_tc90)}</td>
+                                            <td className="py-4 px-2 text-gray-800">{renderCell(row.Batch_Weight)}</td>
                                             <td className="py-4 px-2 text-gray-800">{renderCell(row.Hardness)}</td>
                                             <td className="py-4 px-2 text-gray-800">{renderCell(row.SpecificGravity)}</td>
-                                            <td className="py-4 px-2 text-gray-800">{renderCell(row.Batch_Weight)}</td>
+                                           
                                             <td className="py-4 px-2 text-gray-800">{renderCell(row.Dump_Temp)}</td>
                                             <td className="py-4 px-2 text-gray-950">{renderCell(row.status)}</td>
                                         </tr>

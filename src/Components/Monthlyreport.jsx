@@ -81,7 +81,7 @@ const downloadExcel = () => {
                             onChange={(e) => setSelectedBatch(e.target.value)}
                             className="mt-1 block w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-md text-gray-700 focus:ring-indigo-500 focus:border-indigo-500"
                         >
-                            <option value="">Select a batch</option>
+                            <option value="">Select Compound</option>
                             {Array.isArray(batches) && batches.map((batch, index) => (
                                 <option key={index} value={batch.sapCode}>
                                     {batch.batch_name.trim()}
@@ -135,18 +135,19 @@ const downloadExcel = () => {
             <div className="max-w-6xl mx-auto">
                 <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
                     <thead className="sticky top-20 bg-gray-100 z-15">
-                        <tr className="bg-gray-100 text-gray-700 uppercase text-sm leading-normal">
-                        <th className="py-3 px-3 text-left">Date&Time</th>
+                        <tr className="bg-gray-100 text-gray-700  text-sm leading-normal">
+                        <th className="py-3 px-3 text-left">Test-Date</th>
                             <th className="py-3 px-3 text-left">Sapcode </th>
                             <th className="py-3 px-3 text-left">Batch_No</th>
                            
-                            <th className="py-3 px-3 text-left">ML</th>
-                            <th className="py-3 px-3 text-left">MH</th>
-                            <th className="py-3 px-3 text-left">TS2</th>
-                            <th className="py-3 px-3 text-left">TC90</th>
-                            <th className="py-3 px-3 text-left">HRD</th>
-                            <th className="py-3 px-3 text-left">SP-Gravity</th>
-                            <th className="py-3 px-3 text-left">Wt</th>
+                            <th className="py-3 px-3 text-left">ML (R1)</th>
+                            <th className="py-3 px-3 text-left">MH (R2)</th>
+                            <th className="py-3 px-3 text-left">TS2 (R3)</th>
+                            <th className="py-3 px-3 text-left">Tc50 (R4)</th>
+                            <th className="py-3 px-3 text-left">TC90 (R5)</th>
+                            <th className="py-3 px-3 text-left">WT-KG</th>
+                            <th className="py-3 px-3 text-left">HRD (H1)</th>
+                            <th className="py-3 px-3 text-left">SPG (S1)</th>
                             <th className="py-3 px-3 text-left">Dump Temp</th>
                             <th className="py-3 px-3 text-left">Status</th>
                         </tr>
@@ -171,10 +172,12 @@ const downloadExcel = () => {
                                         <td className="py-3 px-2 text-gray-800">{renderCell(row.R_ml)}</td>
                                         <td className="py-3 px-2 text-gray-800">{renderCell(row.R_mh)}</td>
                                         <td className="py-3 px-2 text-gray-800">{renderCell(row.R_ts2)}</td>
+                                        <td className="py-3 px-2 text-gray-800">{renderCell(row.R_tc50)}</td>
                                         <td className="py-3 px-2 text-gray-800">{renderCell(row.R_tc90)}</td>
+                                        <td className="py-3 px-2 text-gray-800">{renderCell(row.Batch_Weight)}</td>
                                         <td className="py-3 px-2 text-gray-800">{renderCell(row.Hardness)}</td>
                                         <td className="py-3 px-2 text-gray-800">{renderCell(row.SpecificGravity)}</td>
-                                        <td className="py-3 px-2 text-gray-800">{renderCell(row.Batch_Weight)}</td>
+                                      
                                         <td className="py-3 px-2 text-gray-800">{renderCell(row.Dump_Temp)}</td>
                                         <td className="py-3 px-2 text-gray-950">{renderCell(row.status)}</td>
                                     </tr>

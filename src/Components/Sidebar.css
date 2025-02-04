@@ -51,7 +51,7 @@
 }
 
 .logo-with-shadow {
-    filter: drop-shadow(5px 5px 10px rgba(236, 233, 233, 0.868));
+    filter: drop-shadow(5px 5px 10px rgb(6, 6, 6));
 }
 
 .logo-with-shadow1 {

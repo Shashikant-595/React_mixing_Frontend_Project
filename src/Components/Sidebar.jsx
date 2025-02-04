@@ -21,7 +21,7 @@ const Sidebar = () => {
          {/* onClick={() => showSweetAlert('Create Category Clicked', 'Navigating to Create Category', 'info')} */}
             <div className="icon-sidebar  sm:block label bg-gray-400" id="sidebar">
                 <Link to="/" >
-                    <FontAwesomeIcon icon={faHouse} className="btn-scale logo-with-shadow1" style={{ color: 'black' }} />
+                    <FontAwesomeIcon icon={faHouse} className="btn-scale logo-with-shadow1" style={{ color: 'black', marginTop:'10px'}} />
                     <span>Home</span>
                 </Link>
                 <Link to="/OverallReport" >

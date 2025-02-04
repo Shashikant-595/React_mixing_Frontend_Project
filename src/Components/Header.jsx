@@ -13,7 +13,8 @@ export default function Header() {
                 />
              
                 <div className='flex-grow text-center'>
-                    <h1 className='text-2xl font-bold text-white '>Fores Mixing Quality Control</h1>
+                    {/* <h1 className='text-2xl font-bold text-white '>Fores Mixing Quality Control</h1> */}
+                    <h1 className='text-2xl font-bold  text-slate-100'>Fores Mixing Quality Control</h1>
                 </div>
             </header>
     </div>
