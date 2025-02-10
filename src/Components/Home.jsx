@@ -207,7 +207,7 @@ export default function Home() {
 
       
          <div className={`p-6 rounded-lg shadow-md ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-blue-900 hover:shadow-2xl border border-blue-600  transition-shadow duration-300 `}>
-            <h3 className={`${isDarkMode ? 'text-gray-300' : 'text-gray-500'} text-center`}> Produced</h3>
+            <h3 className={`${isDarkMode ? 'text-gray-300' : 'text-gray-700'} text-center `}> Produced</h3>
             <p className="text-2xl text-center font-semibold text-blue-500">{batchData.monthlyTotalBatches}</p>
           </div>
           <div className={`p-6 rounded-lg shadow-md ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-blue-900 hover:shadow-2xl border border-blue-600 transition-shadow duration-300`}>
@@ -302,7 +302,7 @@ export default function Home() {
       };
       return (
         <tr key={index} className={`${isDarkMode ? 'hover:bg-gray-500' : 'hover:bg-gray-300'}`}>
-           <td className={`${isDarkMode ? 'text-white' : 'text-gray-700'} py-4 px-2`}>{renderCell(row.Reho_Date_Time)}</td>
+          <td className={`${isDarkMode ? 'text-white' : 'text-gray-700'} py-4 px-2`}>{renderCell(row.Reho_Date_Time)}</td>
           <td className={`${isDarkMode ? 'text-white' : 'text-gray-700'} py-4 px-2`}>{renderCell(row.Sapcode)}</td>
           <td className={`${isDarkMode ? 'text-white' : 'text-gray-700'} py-4 px-2`}>{renderCell(row.batch_name)}</td>
           <td className={`${isDarkMode ? 'text-white' : 'text-gray-700'} py-4 px-2`}>{renderCell(row.Batch_No)}</td> 
