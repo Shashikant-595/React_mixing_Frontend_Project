@@ -149,7 +149,7 @@ const OverallReport = () => {
                                         <tr key={index} className="border-b border-gray-200 hover:bg-gray-50">
                                             <td className="py-4 px-2 text-gray-800">{renderCell(row.Reho_Date_Time)}</td>
                                             <td className="py-4 px-2 text-gray-800">{renderCell(row.Batch_Name)}</td>
-                                            <td className="py-4 px-2 text-gray-800">{renderCell(row.Batch_No)}</td>
+                                            <td className="py-4 px-2 text-gray-800 uppercase">{renderCell(row.Batch_No)}</td>
                                            
                                             <td className="py-4 px-2 text-gray-800">{renderCell(row.R_ml)}</td>
                                             <td className="py-4 px-2 text-gray-800">{renderCell(row.R_mh)}</td>

@@ -305,7 +305,7 @@ export default function Home() {
           <td className={`${isDarkMode ? 'text-white' : 'text-gray-700'} py-4 px-2`}>{renderCell(row.Reho_Date_Time)}</td>
           <td className={`${isDarkMode ? 'text-white' : 'text-gray-700'} py-4 px-2`}>{renderCell(row.Sapcode)}</td>
           <td className={`${isDarkMode ? 'text-white' : 'text-gray-700'} py-4 px-2`}>{renderCell(row.batch_name)}</td>
-          <td className={`${isDarkMode ? 'text-white' : 'text-gray-700'} py-4 px-2`}>{renderCell(row.Batch_No)}</td> 
+          <td className={`${isDarkMode ? 'text-white' : 'text-gray-700'} py-4 px-2 uppercase`}>{renderCell(row.Batch_No)}</td> 
           <td className={`${isDarkMode ? 'text-white' : 'text-gray-700'} py-4 px-2`}>{renderCell(row.R_ml)}</td>
           <td className={`${isDarkMode ? 'text-white' : 'text-gray-700'} py-4 px-2`}>{renderCell(row.R_mh)}</td>
           <td className={`${isDarkMode ? 'text-white' : 'text-gray-700'} py-4 px-2`}>{renderCell(row.R_ts2)}</td>
