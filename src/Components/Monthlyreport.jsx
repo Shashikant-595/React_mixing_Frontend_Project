@@ -74,7 +74,7 @@ const downloadExcel = () => {
             <div className="max-w-6xl mx-auto p-1 bg-white shadow-md sticky top-0 z-18 rounded-lg">
                 <div className="flex flex-wrap items-center">
                     <div className="form-group mr-2 mb-2">
-                        <label htmlFor="batchSelect" className="block text-md font-medium text-gray-700">Select Batch</label>
+                        <label htmlFor="batchSelect" className="block text-md font-medium text-gray-700">Compound Name</label>
                         <select
                             id="batchSelect"
                             value={selectedBatch}

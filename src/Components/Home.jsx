@@ -86,13 +86,13 @@ export default function Home() {
             });
         
             // Debugging to verify values
-            console.log("Data received:", data);
-            console.log("Rejected Batches:", data.rejected); 
-            console.log("In Process:", data.inProcess); 
-            console.log("Total Testing:", data.totalTesting ); 
-            console.log("Production Batches:", data.produced); 
-            console.log("Direct OK Batches:", data.directOK); 
-            console.log("Rework OK Batches:", data.reworkOK); 
+            // console.log("Data received:", data);
+            // console.log("Rejected Batches:", data.rejected); 
+            // console.log("In Process:", data.inProcess); 
+            // console.log("Total Testing:", data.totalTesting ); 
+            // console.log("Production Batches:", data.produced); 
+            // console.log("Direct OK Batches:", data.directOK); 
+            // console.log("Rework OK Batches:", data.reworkOK); 
           }
         });
         
@@ -106,8 +106,8 @@ export default function Home() {
 
     return () => {
       connection.stop()
-        .then(() => console.log("Connection stopped"))
-        .catch(err => console.error("Error stopping connection: ", err));
+        .then(() => console.log("  "))
+        .catch(err => console.error(" ", err));
     };
   }, []);
  
@@ -188,7 +188,7 @@ export default function Home() {
   };
 
   return (
-    <div className={`${isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'} w-auto min-h-screen rounded-lg`}>
+    <div className={`${isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'} w-auto min-h-screen  rounded-lg`}>
       <header className="ml-5 flex justify-between items-center p-1  mb-1">
         <div className="moving-text-container">
           {/* <h4 className="moving-text">__Welcome To Mixing Dashboard__</h4> */}
@@ -204,8 +204,6 @@ export default function Home() {
       <main className="flex-grow p-3">
       <h3 className={`${isDarkMode ? 'text-gray-300' : 'text-gray-700'} mb-4 text-center font-semibold underline underline-offset-4`}> <span className="text-blue-600"> {new Date().toLocaleString('en-US', { month: 'long' })}</span> Batch Quality Status  </h3>
         <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-2 mb-2 ">
-
-      
          <div className={`p-6 rounded-lg shadow-md ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-blue-900 hover:shadow-2xl border border-blue-600  transition-shadow duration-300 `}>
             <h3 className={`${isDarkMode ? 'text-gray-300' : 'text-gray-700'} text-center `}> Produced</h3>
             <p className="text-2xl text-center font-semibold text-blue-500">{batchData.monthlyTotalBatches}</p>
@@ -235,14 +233,14 @@ export default function Home() {
 
         {/* Chart Section */}
         <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className={`p-10 rounded-lg shadow-md mb-10 ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-blue-900`} style={{ height: '300px', overflow: 'hidden' }}>
-            <h3 className={`${isDarkMode ? 'text-gray-300' : 'text-gray-700'} text-center mb-4  font-semibold underline  underline-offset-4`}>Batch Production Over <span className="text-blue-600 ">{new Date().getFullYear()}</span></h3>
+          <div className={`p-10 rounded-lg shadow-md mb-10 ${isDarkMode ? 'bg-gray-800 text-gray-300' : 'bg-white text-gray-800'}  shadow-blue-900`} style={{ height: '300px', overflow: 'hidden' }}>
+            <h3 className={`${isDarkMode ? 'bg-gray-800 text-gray-300' : 'bg-white text-gray-800'} text-center mb-4  font-semibold underline  underline-offset-4`}>Batch Production Over <span className="text-blue-600 ">{new Date().getFullYear()}</span></h3>
             <div style={{ height: '100%' }}>
               <Bar data={barData} options={{ maintainAspectRatio: false }} />
             </div>
           </div>
-          <div className={`p-11 rounded-lg shadow-md  mb-10 ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-blue-900`} style={{ height: '300px', overflow: 'hidden' }}>
-            <h3 className={`${isDarkMode ? 'text-gray-300' : 'text-gray-700'} text-center mb-4 font-semibold underline underline-offset-4`}><span className="text-blue-600"> {new Date().toLocaleString('en-US', { month: 'long' })}</span> Batch Quality Status Distribution</h3>
+          <div className={`p-11 rounded-lg shadow-md  mb-10 ${isDarkMode ? 'bg-gray-800 text-gray-300' : 'bg-white text-gray-800'} shadow-blue-900`} style={{ height: '300px', overflow: 'hidden' }}>
+            <h3 className={`${isDarkMode ? 'bg-gray-800 text-gray-300' : 'bg-white text-gray-800'} text-center mb-4 font-semibold underline underline-offset-4`}><span className="text-blue-600"> {new Date().toLocaleString('en-US', { month: 'long' })}</span> Batch Quality Status Distribution</h3>
             <div style={{ height: '100%' }}>
               <Doughnut data={doughnutData} options={{ maintainAspectRatio: false }} />
             </div>
@@ -253,7 +251,8 @@ export default function Home() {
           isDarkMode ? 'bg-gray-800' : 'bg-white'
         } shadow-blue-900`}
       >
-        <BatchEfficiencyComponent />
+        {/* <BatchEfficiencyComponent /> */}
+        <BatchEfficiencyComponent isDarkMode={isDarkMode} />
       </section>
         <section className="grid grid-cols-1 md:grid-cols-1 gap-4 ">
   {/* <div className={`py-1 px-2 rounded-lg shadow-md ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-blue-900`} style={{ height: '300px', overflow: 'hidden' }}>
